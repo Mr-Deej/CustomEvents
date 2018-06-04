@@ -2,36 +2,27 @@ package me.drkmatr1984.customevents.interactEvents;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.block.Block;
-import org.bukkit.block.BlockFace;
+import org.bukkit.World;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
-import org.bukkit.event.block.Action;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 
-public class PlayerInteractBaseClickEvent extends Event implements Cancellable{
+public class PlayerInteractEntityBaseClickEvent extends Event implements Cancellable{
 
 	private static final HandlerList handlerList = new HandlerList();
 	private boolean cancelled = false;
 	private Plugin plugin;
 	private Player player;
-	private Block clickedBlock;
-	private BlockFace blockFace;
-	private ItemStack itemStack;
-	private Material material;
-	private Action action;
+	private Entity clickedEntity;
 	
-	public PlayerInteractBaseClickEvent(Plugin plugin, Player player, Block clickedBlock, BlockFace blockFace, ItemStack itemStack, Material material, Action action) {
+	public PlayerInteractEntityBaseClickEvent(Plugin plugin, Player player, Entity clickedEntity) {
 		this.plugin = plugin;
 		this.player = player;
-		this.clickedBlock = clickedBlock;
-		this.blockFace = blockFace;
-		this.itemStack = itemStack;
-		this.material = material;
-		this.action = action;
+		this.clickedEntity = clickedEntity;
 	}
 	
 	@Override
@@ -61,20 +52,8 @@ public class PlayerInteractBaseClickEvent extends Event implements Cancellable{
 		return this.player;
 	}
 	
-	public Block getClickedBlock(){
-		return this.clickedBlock;
-	}
-	
-	public BlockFace getBlockFace(){
-		return this.blockFace;
-	}
-	
-	public ItemStack getItem(){
-		return this.itemStack;
-	}
-	
-	public Material getType(){
-		return this.material;
+	public Entity getClickedEntity(){
+		return this.clickedEntity;
 	}
 	
 	public ItemStack getItemInMainHand(){
@@ -109,11 +88,12 @@ public class PlayerInteractBaseClickEvent extends Event implements Cancellable{
 		return true;
 	}
 	
-	public Location getClickedBlockLocation(){
-		return this.clickedBlock.getLocation();
+	public Location getClickedEntityLocation(){
+		return this.clickedEntity.getLocation();
 	}
 	
-	public Action getAction(){
-		return this.action;
+	public World getClickedEntityWorld(){
+		return this.clickedEntity.getWorld();
 	}
 }
+

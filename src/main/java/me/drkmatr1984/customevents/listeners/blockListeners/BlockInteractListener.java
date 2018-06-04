@@ -23,18 +23,18 @@ public class BlockInteractListener implements Listener {
 		this.plugin = plugin;
 	}
 	
-	@EventHandler(priority=EventPriority.HIGHEST, ignoreCancelled=false)
+	@EventHandler(priority=EventPriority.LOW, ignoreCancelled=true)
     public void onPlayerInteract(PlayerInteractEvent event) {
     	Player player = event.getPlayer();
         PlayerInteractBaseClickEvent clickEvent;
         //MainHand Event Trigger
         if(event.getAction() == Action.LEFT_CLICK_BLOCK || event.getAction() == Action.LEFT_CLICK_AIR){     	
         	if(player.isSneaking()){
-        		clickEvent = new PlayerInteractCrouchLeftClickEvent(this.plugin, event.getPlayer() ,event.getClickedBlock(), event.getBlockFace(), event.getItem(), event.getMaterial(), event.isCancelled(), event.getAction());
+        		clickEvent = new PlayerInteractCrouchLeftClickEvent(this.plugin, event.getPlayer() ,event.getClickedBlock(), event.getBlockFace(), event.getItem(), event.getMaterial(), event.getAction());
             	Bukkit.getServer().getPluginManager().callEvent(clickEvent);
             	event.setCancelled(clickEvent.isCancelled());
         	}else{
-        		clickEvent = new PlayerInteractLeftClickEvent(this.plugin, event.getPlayer() ,event.getClickedBlock(), event.getBlockFace(), event.getItem(), event.getMaterial(), event.isCancelled(), event.getAction());
+        		clickEvent = new PlayerInteractLeftClickEvent(this.plugin, event.getPlayer() ,event.getClickedBlock(), event.getBlockFace(), event.getItem(), event.getMaterial(), event.getAction());
             	Bukkit.getServer().getPluginManager().callEvent(clickEvent);
             	event.setCancelled(clickEvent.isCancelled());
         	}

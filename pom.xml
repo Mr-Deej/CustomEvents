@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>me.drkmatr1984</groupId>
     <artifactId>customevents</artifactId>
-    <version>0.12</version>
+    <version>0.14</version>
     <packaging>jar</packaging>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -25,6 +25,10 @@
         <repository>
             <id>DrkMatr1984 Repo</id>
             <url>https://minevolt.net/repo/</url>
+        </repository>
+        <repository>
+            <id>DrkMatr1984 Repo2</id>
+            <url>http://10.0.0.14/repo/</url>
         </repository>
     </repositories>
     <build>
