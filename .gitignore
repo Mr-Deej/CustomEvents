@@ -30,6 +30,7 @@ buildNumber.properties
 .Trashes
 .VolumeIcon.icns
 .idea/*
+*.idea
 *.iml
 
 # Directories potentially created on remote AFP share
