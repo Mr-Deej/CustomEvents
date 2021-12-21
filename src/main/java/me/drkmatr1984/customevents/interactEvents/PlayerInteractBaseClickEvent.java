@@ -16,13 +16,13 @@ public class PlayerInteractBaseClickEvent extends Event implements Cancellable{
 
 	private static final HandlerList handlerList = new HandlerList();
 	private boolean cancelled = false;
-	private Plugin plugin;
-	private Player player;
-	private Block clickedBlock;
-	private BlockFace blockFace;
-	private ItemStack itemStack;
-	private Material material;
-	private Action action;
+	private final Plugin plugin;
+	private final Player player;
+	private final Block clickedBlock;
+	private final BlockFace blockFace;
+	private final ItemStack itemStack;
+	private final Material material;
+	private final Action action;
 	
 	public PlayerInteractBaseClickEvent(Plugin plugin, Player player, Block clickedBlock, BlockFace blockFace, ItemStack itemStack, Material material, Action action) {
 		this.plugin = plugin;
@@ -95,18 +95,12 @@ public class PlayerInteractBaseClickEvent extends Event implements Cancellable{
 	
 	public boolean hasItemInMainHand(){
 		ItemStack stack = this.player.getInventory().getItemInMainHand();
-		if(stack == null || stack.getType() == Material.AIR){
-			return false;
-		}
-		return true;
+		return stack.getType() != Material.AIR;
 	}
 	
 	public boolean hasItemInOffHand(){
 		ItemStack stack = this.player.getInventory().getItemInOffHand();
-		if(stack == null || stack.getType() == Material.AIR){
-			return false;
-		}
-		return true;
+		return stack.getType() != Material.AIR;
 	}
 	
 	public Location getClickedBlockLocation(){

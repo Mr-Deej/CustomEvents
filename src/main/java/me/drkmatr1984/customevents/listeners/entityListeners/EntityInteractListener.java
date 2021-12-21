@@ -19,7 +19,7 @@ import me.drkmatr1984.customevents.interactEvents.PlayerInteractEntityRightClick
 
 public class EntityInteractListener implements Listener
 {
-	private Plugin plugin;
+	private final Plugin plugin;
 	
 	public EntityInteractListener(Plugin plugin){
 		this.plugin = plugin;
@@ -34,7 +34,7 @@ public class EntityInteractListener implements Listener
 				PlayerInteractEntityBaseClickEvent clickEvent;
 				if(player.isSneaking()) {
 					clickEvent = null;
-					clickEvent = new PlayerInteractEntityCrouchLeftClickEvent(plugin, player, (LivingEntity) event.getEntity(), false);
+					clickEvent = new PlayerInteractEntityCrouchLeftClickEvent(plugin, player, event.getEntity(), false);
 					Bukkit.getServer().getPluginManager().callEvent(clickEvent);
 					if(clickEvent.isCancelled()) {
 						event.setCancelled(true);
@@ -45,7 +45,7 @@ public class EntityInteractListener implements Listener
 	  				  	event.setCancelled(true);
 					}
 				}else {
-					clickEvent = new PlayerInteractEntityLeftClickEvent(plugin, player, (LivingEntity) event.getEntity(), false);
+					clickEvent = new PlayerInteractEntityLeftClickEvent(plugin, player, event.getEntity(), false);
 					Bukkit.getServer().getPluginManager().callEvent(clickEvent);
 					if(clickEvent.isCancelled()) {
 						event.setCancelled(true);
@@ -67,18 +67,16 @@ public class EntityInteractListener implements Listener
 				PlayerInteractEntityBaseClickEvent clickEvent;
 				Player player = event.getPlayer();
 				if(player.isSneaking()) {
-					clickEvent = new PlayerInteractEntityCrouchRightClickEvent(plugin, event.getPlayer(), (LivingEntity) event.getRightClicked());
+					clickEvent = new PlayerInteractEntityCrouchRightClickEvent(plugin, event.getPlayer(), event.getRightClicked());
 					Bukkit.getServer().getPluginManager().callEvent(clickEvent);
 					if(clickEvent.isCancelled()) {
 						event.setCancelled(true);
-						return;
 					}
 				}else {
-					clickEvent = new PlayerInteractEntityRightClickEvent(plugin, event.getPlayer(), (LivingEntity) event.getRightClicked());
+					clickEvent = new PlayerInteractEntityRightClickEvent(plugin, event.getPlayer(), event.getRightClicked());
 					Bukkit.getServer().getPluginManager().callEvent(clickEvent);
 					if(clickEvent.isCancelled()) {
 						event.setCancelled(true);
-						return;
 					}
 				}				
 			}

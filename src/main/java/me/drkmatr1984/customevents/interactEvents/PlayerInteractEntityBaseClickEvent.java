@@ -15,9 +15,9 @@ public class PlayerInteractEntityBaseClickEvent extends Event implements Cancell
 
 	private static final HandlerList handlerList = new HandlerList();
 	private boolean cancelled = false;
-	private Plugin plugin;
-	private Player player;
-	private Entity clickedEntity;
+	private final Plugin plugin;
+	private final Player player;
+	private final Entity clickedEntity;
 	
 	public PlayerInteractEntityBaseClickEvent(Plugin plugin, Player player, Entity clickedEntity) {
 		this.plugin = plugin;
@@ -74,18 +74,12 @@ public class PlayerInteractEntityBaseClickEvent extends Event implements Cancell
 	
 	public boolean hasItemInMainHand(){
 		ItemStack stack = this.player.getInventory().getItemInMainHand();
-		if(stack == null || stack.getType() == Material.AIR){
-			return false;
-		}
-		return true;
+		return stack.getType() != Material.AIR;
 	}
 	
 	public boolean hasItemInOffHand(){
 		ItemStack stack = this.player.getInventory().getItemInOffHand();
-		if(stack == null || stack.getType() == Material.AIR){
-			return false;
-		}
-		return true;
+		return stack.getType() != Material.AIR;
 	}
 	
 	public Location getClickedEntityLocation(){

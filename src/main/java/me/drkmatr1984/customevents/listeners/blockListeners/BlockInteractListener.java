@@ -17,7 +17,7 @@ import me.drkmatr1984.customevents.interactEvents.PlayerInteractRightClickEvent;
  
 public class BlockInteractListener implements Listener {
 	
-	private Plugin plugin;
+	private final Plugin plugin;
 	
 	public BlockInteractListener(Plugin plugin){
 		this.plugin = plugin;
@@ -50,8 +50,7 @@ public class BlockInteractListener implements Listener {
         		clickEvent = new PlayerInteractRightClickEvent(this.plugin, event.getPlayer() ,event.getClickedBlock(), event.getBlockFace(), event.getItem(), event.getMaterial(), event.isCancelled(), event.getAction());
             	Bukkit.getServer().getPluginManager().callEvent(clickEvent);
             	event.setCancelled(clickEvent.isCancelled());
-        	}       	
-        	return;
-        }	
+        	}
+		}
 	}
 }
