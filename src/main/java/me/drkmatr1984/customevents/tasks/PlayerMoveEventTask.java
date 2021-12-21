@@ -11,11 +11,12 @@ import me.drkmatr1984.customevents.moveEvents.SignificantPlayerMoveEvent;
 
 public class PlayerMoveEventTask extends BukkitRunnable {
 	
-	private HashMap<Player, Location> oldLocale = new HashMap<Player, Location>();
+	private final HashMap<Player, Location> oldLocale = new HashMap<>();
 	
 	@Override
 	public void run() {
-		if(Bukkit.getServer().getOnlinePlayers()!=null && !Bukkit.getServer().getOnlinePlayers().isEmpty()){			
+		Bukkit.getServer().getOnlinePlayers();
+		if(!Bukkit.getServer().getOnlinePlayers().isEmpty()){
 			for(Player player : Bukkit.getServer().getOnlinePlayers())
 			{
 				Location l = player.getLocation();				
@@ -37,7 +38,6 @@ public class PlayerMoveEventTask extends BukkitRunnable {
         if (loc1.getBlockX() != loc2.getBlockX()) return false;
         if (loc1.getBlockZ() != loc2.getBlockZ()) return false;
         if (loc1.getBlockY() != loc2.getBlockY()) return false;
-        if (loc1.getWorld() != loc2.getWorld()) return false;
-        return true;
-    }
+		return loc1.getWorld() == loc2.getWorld();
+	}
 }
