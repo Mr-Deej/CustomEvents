@@ -6,9 +6,9 @@ import org.bukkit.entity.Player;
 
 public class SignificantPlayerMoveEvent extends BaseMoveEvent{
 	
-	private Player player;
-	private Location from;
-	private Location to;
+	private final Player player;
+	private final Location from;
+	private final Location to;
 	
 	public SignificantPlayerMoveEvent(Player player, Location from, Location to){
 		this.player = player;

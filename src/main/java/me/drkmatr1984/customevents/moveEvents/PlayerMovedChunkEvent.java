@@ -7,11 +7,11 @@ import org.bukkit.entity.Player;
 
 public class PlayerMovedChunkEvent extends BaseMoveEvent{
 	
-	private Player player;
-	private Location from;
-	private Location to;
-	private Chunk toChunk;
-    private Chunk fromChunk;
+	private final Player player;
+	private final Location from;
+	private final Location to;
+	private final Chunk toChunk;
+    private final Chunk fromChunk;
 	
 	public PlayerMovedChunkEvent(Player player, Location from, Location to, Chunk toChunk, Chunk fromChunk){
 		this.player = player;
