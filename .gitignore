@@ -29,6 +29,8 @@ buildNumber.properties
 .TemporaryItems
 .Trashes
 .VolumeIcon.icns
+.idea/*
+*.iml
 
 # Directories potentially created on remote AFP share
 .AppleDB
