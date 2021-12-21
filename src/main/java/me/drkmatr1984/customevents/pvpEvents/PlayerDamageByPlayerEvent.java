@@ -12,30 +12,28 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 public class PlayerDamageByPlayerEvent extends EntityDamageByEntityEvent implements Cancellable
 {
 	private static final HandlerList handlerList = new HandlerList();
-	private EntityDamageByEntityEvent event;
 	private boolean cancelled = false;
 	private double damage = 0.0;
 	private DamageCause cause = null;
 	private Player damaged = null;
 	private Player damaging = null;
 	
-	private Map<DamageModifier, Double> damageMap;
+	private final Map<DamageModifier, Double> damageMap;
 	
 	public PlayerDamageByPlayerEvent(EntityDamageByEntityEvent event) {
-		super((Player) event.getDamager(), event.getEntity(), event.getCause(), event.getDamage());
-		this.event = event;
+		super(event.getDamager(), event.getEntity(), event.getCause(), event.getDamage());
 		damageMap = new HashMap<DamageModifier, Double>();
 		for(DamageModifier dM : DamageModifier.values()) {
 			try {
-				damageMap.put(dM, this.event.getDamage(dM));
+				damageMap.put(dM, event.getDamage(dM));
 			}catch(IllegalArgumentException e) {
 				damageMap.put(dM, 0.0);
 			} 			
 		}
-		this.damage = this.event.getDamage();
-		this.cause = this.event.getCause();
-		this.damaged = (Player) this.event.getEntity();
-		this.damaging = (Player) this.event.getDamager();
+		this.damage = event.getDamage();
+		this.cause = event.getCause();
+		this.damaged = (Player) event.getEntity();
+		this.damaging = (Player) event.getDamager();
 	}
 	
 	public Player getDamagedPlayer() {
